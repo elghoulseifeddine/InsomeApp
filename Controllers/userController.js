@@ -62,7 +62,8 @@ exports.addUser = async (req, res) => {
   // ************************* get user by ID ********************************
 
   exports.getUserById = async (req, res) => {
-    const user = await User.findById(req.params.id).populate("posts")
+    // const user = await User.findById(req.params.id).populate("posts")
+    const user = await User.findById(req.params.id)
     // .populate("profile")
   
     try {
@@ -87,7 +88,8 @@ exports.addUser = async (req, res) => {
       // await User.findById(id)
       if(req.file){
           const user= await User.findById(id)
-         userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body,image : req.file.path}})
+        //  userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body,image : req.file.path}})
+        userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body,image : req.file.path}})
     }else{
      
          userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body}})
