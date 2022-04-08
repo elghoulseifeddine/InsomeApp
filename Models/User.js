@@ -32,10 +32,10 @@ const userSchema = new mongoose.Schema({
       default:"Team Member"
   },
   
-//   posts:[{
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref:"Post"
-//   }],
+  expends:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Expend"
+  }],
 
   dateOfCreation:{
       type: Date,

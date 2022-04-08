@@ -62,9 +62,8 @@ exports.addUser = async (req, res) => {
   // ************************* get user by ID ********************************
 
   exports.getUserById = async (req, res) => {
-    // const user = await User.findById(req.params.id).populate("posts")
-    const user = await User.findById(req.params.id)
-    // .populate("profile")
+    const user = await User.findById(req.params.id).populate("expends")
+    // const user = await User.findById(req.params.id)
   
     try {
       await 
@@ -92,7 +91,7 @@ exports.addUser = async (req, res) => {
         userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body,image : req.file.path}})
     }else{
      
-         userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body}})
+         userUpdate = await User.findByIdAndUpdate(id,{$set : {...req.body, dateOfCreation : date.now()}})
     };
       res.status(201).json({ msg: "Updated User success",userUpdate});
     } catch (error) {
@@ -121,8 +120,8 @@ exports.addUser = async (req, res) => {
 
   exports.UserGet = async (req, res) => {
 
-    // const allUsers = await User.find().populate("posts");
-    const allUsers = await User.find();
+    const allUsers = await User.find().populate("expends");
+    // const allUsers = await User.find();
   
     try {
       await 
